@@ -48,10 +48,11 @@ Data are taken from Excel spreadsheets from various federal and provincial websi
 - Information on programs of study: [Statistics Canada](https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=3710001101)
 
 
-## Notes on data cleaning:
+## Notes on preliminary data cleaning of ON Colleges in Excel, before moving to notebook:
 
 ### MCU University enrolment
 - Numbers less than 10 are NA
+- All other comments in Jupyter notebook
 
 ### MCU College enrolment
 **Initial feature engineering of % by status was performed in Excel before importing into a notebook by Pandas dataframe by reading Excel**.
@@ -61,8 +62,8 @@ Data are taken from Excel spreadsheets from various federal and provincial websi
 
 - I checked the multiple tabs of the excel workbook e.g. both age and gender to confirm the total enrolment numbers agree (for example, that the sum of all age demographics that counted enrolment and all gender options were in agreement). Age and Gender tend to align with some slight discrepancies of 5-10 in some schools
 
-- Some discrepancies of 5-10 students when comparing total enrolment in a given year by Age or Gender vs Status. This amounts to around 0.2-0.5% of the total figures in most case
-    - E.g. Centennial College 22-23 Enrolment by Gender was 21687 Full-time, it is 21695 in the numbers from Status. The difference of 8 divided by 21687 is 0.04% but we might expect some discrepancy as high as 0.5% with smaller schools
+- Some discrepancies of 5-10 students when comparing total enrolment in a given year by Age or Gender vs Status. This amounts to around 0.2-0.5% of the total figures in most cases
+    - E.g. Centennial College 22-23 Enrolment by Gender was 21687 Full-time, it is 21695 in the numbers from Status. The difference of 8 divided by 21687 is 0.04% but we might expect some discrepancy as high as 0.4-0.5% with smaller schools
 
 - Seneca 22-23 has 7613 of Unknown status out of 27000 - where are they from? Is this some stream of enrolment where that information wasn’t gathered? 
     - The % international students at Seneca in 2022-23 was 51% but due to this large Unknown category, it may be more.
@@ -70,7 +71,7 @@ Data are taken from Excel spreadsheets from various federal and provincial websi
 
 - Cité Collégiale had no Aboriginal category so I used Other to assume that it included Aboriginal.
 
-- Loyalist did not have a category for Study Permit holders in 2022-23, it did have Other which had 5152 respondents. Other was a category in some other Colleges with around 5 or 10 respondents at most. I assumed Study permit holders fell under this category at Loyalist
+- Loyalist did not have a category for Study Permit holders in 2022-23, it did have Other which had 5152 respondents. Other was a category in some other Colleges with around 5 or 10 respondents at most. I assumed Study permit holders fell under this Other category at Loyalist.
 
 - Humber College had 11.3% in Other category despite having exhaustive categories for other status which many colleges did not. It’s not clear what status specifically these students had.
 
