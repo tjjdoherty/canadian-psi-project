@@ -2,6 +2,11 @@
 Analysis of Canadian Post-Secondary Institutions by unsupervised learning, growth and revenue modelling
 An exploration of student demographics, program diversity, growth rates and provincial regulations.
 
+## Jan 2025 Update:
+This project will be developed in ways to illustrate an expanding Data Science skillset e.g. pipeline to automate and standardize preprocessing of data. It seems unlikely at the moment that the data here could be used to make a supervised learning model in predicting school revenue or international enrolment itself as these are both impacted by a variety of nonlinear and intangible effects that aren't captured in the enrolment data alone which I have access to. 
+
+Additionally, the direction I want to take now - forecast of revenue lost due to declining international enrolment e.g. starting with a hypothetical 30% drop in international enrollment across the board and translating that into # of international students * international enrolment, for each school - is more of a simple calculation based on hypothetical scenarios and it doesn't require a predictive model.
+
 ## Goals of this project:
 
 - Beginning with the province of Ontario, I will collect and combine key data on Canada's Post-Secondary Institution's student enrolment across major demographics e.g. Status in Canada, Gender, information on Program enrolment by students, type of institution/programs offered, the PSI's growth in enrolment over the last 10-15 years (depending on data avilability), available data on PSI's financial performance and combine with information related to IRCC study permits issued for the respective year.
