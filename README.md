@@ -13,7 +13,7 @@ This project will be developed in a few ways:
       
   - To see **how Canadian PSIs are responding to this change** as enrolment for AY 25/26 begins. Which programs are no longer being offered?
     - Are international-heavy programs not being offered, anticipating low turnouts, with consolidation into fewer programs (the safe approach)
-    - Are domestic-heavy programs being cut, anticipating budget shortfalls and an inability to fund programs that cater mostly to students paying less money? 
+    - Are domestic-heavy programs being cut, anticipating budget shortfalls and an inability to fund programs with lower reveue ceilings? The assumption there is that the PSI is betting on their ability to outcompete others on attracting students to fill the limited quantity of provincial permits available.
 
 2. To illustrate my expanding Data Science skillset in answering said questions, e.g. pipelines to automate and standardize cleaning and processing of data. It seems unlikely at the moment that the data here could be used to make a supervised learning model in predicting school revenue or international enrolment itself as these are both impacted by a variety of nonlinear and intangible effects that aren't captured in the enrolment data alone which I have access to. We could explore clustering of schools in an unsupervised learning model, but with no clear target that task is not a priority.
 
