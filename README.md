@@ -2,6 +2,23 @@
 Analysis of Canadian Post-Secondary Institutions by unsupervised learning, growth and revenue modelling
 An exploration of student demographics, program diversity, growth rates and provincial regulations.
 
+## Jan 2025 Update:
+This project will be developed in a few ways:
+1. To **answer the pressing issues of the Canadian postsecondary landscape myself**, as much as I can with publicly available information. These include:
+  - Which schools will be most affected by the IRCC announcement of a cap in international study permits (January 2024)? This question involves
+    - Finding the percentage of schools' students enrolment that is international students;
+    - the pace at which this has changed in the last 12-14 years;
+    - the programs on which these students are enrolled (the IRCC change does not cap certain programs); and
+    - the financial loss due to non-enrolment of international students, assuming some forecasted scenarios of e.g. 35% decrease (the estimated new permit decrease at the top federal level) and others.
+      
+  - To see **how Canadian PSIs are responding to this change** as enrolment for AY 25/26 begins. Which programs are no longer being offered?
+    - Are international-heavy programs not being offered, anticipating low turnouts, with consolidation into fewer programs (the safe approach)
+    - Are domestic-heavy programs being cut, anticipating budget shortfalls and an inability to fund programs with lower reveue ceilings? The assumption there is that the PSI is betting on their ability to outcompete others on attracting students to fill the limited quantity of provincial permits available.
+
+2. To illustrate my expanding Data Science skillset in answering said questions, e.g. pipelines to automate and standardize cleaning and processing of data. It seems unlikely at the moment that the data here could be used to make a supervised learning model in predicting school revenue or international enrolment itself as these are both impacted by a variety of nonlinear and intangible effects that aren't captured in the enrolment data alone which I have access to. We could explore clustering of schools in an unsupervised learning model, but with no clear target that task is not a priority.
+
+Additionally, the direction I want to take now - forecast of revenue lost due to declining international enrolment e.g. starting with a hypothetical 30% drop in international enrollment across the board and translating that into # of international students * international enrolment, for each school - is more of a simple calculation based on hypothetical scenarios and it doesn't require a predictive model.
+
 ## Goals of this project:
 
 - Beginning with the province of Ontario, I will collect and combine key data on Canada's Post-Secondary Institution's student enrolment across major demographics e.g. Status in Canada, Gender, information on Program enrolment by students, type of institution/programs offered, the PSI's growth in enrolment over the last 10-15 years (depending on data avilability), available data on PSI's financial performance and combine with information related to IRCC study permits issued for the respective year.
