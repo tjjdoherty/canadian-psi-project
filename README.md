@@ -1,5 +1,5 @@
 # canadian-psi-project
-Analysis of Canadian Post-Secondary Institutions by unsupervised learning, growth and revenue modelling
+Analysis of Canadian Post-Secondary Institutions by unsupervised learning, enrolment growth & revenue modelling
 An exploration of student demographics, program diversity, growth rates and provincial regulations.
 
 ## Jan 2025 Update:
