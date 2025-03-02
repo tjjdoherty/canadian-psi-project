@@ -150,9 +150,9 @@ class PivotCanadianStatus(BaseEstimator, TransformerMixin):
         values_col="Enrolment"
     ):
         """
-        Parameter - index_cols: The columns to keep as index in the pivot (remain in rows).
-        Parameter - pivot_col: The column whose unique values become new columns (e.g., 'Canadian Status').
-        Parameter - values_col: The numeric column to place in new columns (e.g., 'Enrolment').
+        Parameter - index_cols: The columns to keep for each row/record (index in the pivot).
+        Parameter - pivot_col: The column whose unique values become new columns (e.g. 'Canadian Status').
+        Parameter - values_col: The numeric column to place in new columns (e.g. 'Enrolment').
         """
         self.index_cols = index_cols
         self.pivot_col = pivot_col
@@ -164,37 +164,52 @@ class PivotCanadianStatus(BaseEstimator, TransformerMixin):
     def transform(self, X):
         """
         Pivots the dataframe so that 'Canadian Status' becomes columns:
-          -> 'Domestic Enrolment', 'International Enrolment'.
-
+          -> 'Domestic Enrolment'; 'International Enrolment'; 'CA Status Unreported Enrolment'
+        If 'Field of study' or 'Unreported status' is missing, they are skipped
         After pivoting, renames columns accordingly and returns the wide table.
         """
         X = X.copy()
 
-        # 1. Pivot
+        # 1. Build a local list of index columns
+        live_index_cols = [col for col in self.index_cols if col in X]
+
+        # 2. Pivot only on the columns that exist
         pivoted = X.pivot_table(
-            index=self.index_cols,
+            index=live_index_cols,
             columns=self.pivot_col,
             values=self.values_col,
             aggfunc='sum'  # If duplicates exist, sum them
         ).reset_index()
 
-        # 2. Rename columns from 'Canadian students' -> 'Domestic Enrolment' etc.
+        # 3. Rename columns from 'Canadian students' -> 'Domestic Enrolment' etc.
         col_rename_map = {
             'Canadian students': 'Domestic Enrolment',
             'International students': 'International Enrolment',
             'Not reported, status of student in Canada': 'CA Status Unreported Enrolment'
         }
-        pivoted = pivoted.rename(columns=col_rename_map)
+        
+        # 4. rename and convert columns to integers
+        for old_col, new_col in col_rename_map.items():
+            if old_col in pivoted.columns: # this if statement will stop a KeyError from being raised if Unreported status is missing from a dataframe e.g. in domestic_intl.ipynb
+                # rename the column
+                pivoted.rename(columns={old_col: new_col}, inplace=True) # if the column was there (e.g. Canadian Students), it's renamed according to the rename map in 3.
+                # fillna & convert to int
+                pivoted[new_col] = pivoted[new_col].fillna(0).astype(int)
+            # below else statement is if we wanted a dummy column full of zeroes if a column (e.g. Unreported status enrolment) was missing
+            # else:
+            #     # If it's missing, create it with zeros
+            #     if new_col not in pivoted.columns:
+            #         pivoted[new_col] = 0
+        
+        # # 4. convert new Domestic and International Enrolment columns to integers
+        # pivoted['Domestic Enrolment'] = pivoted['Domestic Enrolment'].fillna(0).astype(int)
+        # pivoted['International Enrolment'] = pivoted['International Enrolment'].fillna(0).astype(int)
+        # pivoted['CA Status Unreported Enrolment'] = pivoted['CA Status Unreported Enrolment'].fillna(0).astype(int)
 
-        # 3. convert new Domestic and International Enrolment columns to integers
-        pivoted['Domestic Enrolment'] = pivoted['Domestic Enrolment'].fillna(0).astype(int)
-        pivoted['International Enrolment'] = pivoted['International Enrolment'].fillna(0).astype(int)
-        pivoted['CA Status Unreported Enrolment'] = pivoted['CA Status Unreported Enrolment'].fillna(0).astype(int)
-
-        # 4. Reorder columns if desired
-        # Ensure Domestic and International appear last in an expected order
+        # 4. Reorder columns (domestic, international, unreported) at the end, if they exist
         final_cols = [c for c in pivoted.columns if c not in col_rename_map.values()]
         final_cols += ['Domestic Enrolment', 'International Enrolment', 'CA Status Unreported Enrolment']
-        final_cols = [c for c in final_cols if c in pivoted.columns]  # Only keep existing columns
+        # keep only what actually exists
+        final_cols = [c for c in final_cols if c in pivoted.columns]
 
         return pivoted[final_cols]
