@@ -158,7 +158,7 @@ class PivotCanadianStatus(BaseEstimator, TransformerMixin):
         self.pivot_col = pivot_col
         self.values_col = values_col
 
-    def fit(self, X, y=None):
+    def fit(self, X, y=None): # it's not learning from the data, so just return self
         return self
 
     def transform(self, X):
@@ -180,6 +180,9 @@ class PivotCanadianStatus(BaseEstimator, TransformerMixin):
             values=self.values_col,
             aggfunc='sum'  # If duplicates exist, sum them
         ).reset_index()
+
+        # Remove the axis name "Canadian Status" from columns
+        pivoted.columns.name = None
 
         # 3. Rename columns from 'Canadian students' -> 'Domestic Enrolment' etc.
         col_rename_map = {
