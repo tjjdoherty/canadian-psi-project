@@ -4,7 +4,7 @@ An exploration of Canada's postsecondary institutions since 2009, covering the c
 
 # Updates Log
 
-## March 2025 Update:
+### March 2025:
 
 Have spent time organising the project workbooks and cleaning the contents:
 - Workbooks divided into the lines of enquiry: international/domestic student composition, enrolment in different program types, field of study enrolment changes, etc
@@ -18,7 +18,7 @@ I found several sources from major news outlets like Globe & Mail and CBC with a
 Later I may look into visualisations of the revenue risk factors for schools.
 
 
-## Jan 2025 Update:
+### Jan 2025:
 This project will be developed in a few ways:
 1. To **answer the pressing issues of the Canadian postsecondary landscape**, as much as I can with publicly available information. These include:
   - Which schools will be most affected by the IRCC study permit cap (January 2024)? Following on:
