@@ -52,7 +52,7 @@ A position held by PSIs is that many provincial governments have cut grants and 
 
 ## Data Sources:
 
-Data are taken from Excel spreadsheets from various federal and provincial websites, and in some cases the institution's own websites:
+Data are taken from Excel spreadsheets from various federal and provincial websites, and in some cases the institution's own websites. Some are listed in the introduction of the notebooks, some listed here:
 
 - [IRCC Data on study permit holders](https://open.canada.ca/data/en/dataset/90115b00-f9b8-49e8-afa3-b4cff8facaee)
 
