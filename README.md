@@ -1,27 +1,41 @@
 # canadian-psi-project
 Analysis of Canadian Post-Secondary Institutions by unsupervised learning, enrolment growth & revenue modelling
-An exploration of student demographics, program diversity, growth rates and provincial regulations.
+An exploration of Canada's postsecondary institutions since 2009, covering the change in enrolment on program type, credential type, field of study and domestic/international recruitment.
 
-## Jan 2025 Update:
+# Updates Log
+
+### March 2025:
+
+Have spent time organising the project workbooks and cleaning the contents:
+- Workbooks divided into the lines of enquiry: international/domestic student composition, enrolment in different program types, field of study enrolment changes, etc
+- Building Custom Transformers for a preprocessing pipeline to reduce clutter on workbooks
+- Modularising constants, functions and items that are reusable similar to CTs
+
+Since the Jan 2025 update, I felt to get a respectably accurate picture of potential losses from declining enrolment, I needed to analyse program type (Undergraduate vs Graduate) and Field of Study enrolment first. Tuition fees vary substantially by program, and Field of Study impacts PGWP availability, which is a major draw of international student enrolment, which is itself a major driver of revenue. We will need a picture of the overall enrolment, the international student ratio and any lean towards certain programs and fields of study to get close to any respectable forecasting model.
+
+I found several sources from major news outlets like Globe & Mail and CBC with access to 2024 data which I don't have via StatCan. These will be added to my data where possible, to build a 2023/24 picture, and the sources are in the respective workbooks along with references to PGWP eligible fields of study. I will also incorporate **study permit issuance data from IRCC itself**. A key weakness of going by enrolment (provided to StatCan by PSIS) is that private PSIs do not report their data, but IRCC will see these numbers in the immigration process further up the funnel.
+
+Later I may look into visualisations of the revenue risk factors for schools.
+
+
+### Jan 2025:
 This project will be developed in a few ways:
-1. To **answer the pressing issues of the Canadian postsecondary landscape myself**, as much as I can with publicly available information. These include:
-  - Which schools will be most affected by the IRCC announcement of a cap in international study permits (January 2024)? This question involves
+1. To **answer the pressing issues of the Canadian postsecondary landscape**, as much as I can with publicly available information. These include:
+  - Which schools will be most affected by the IRCC study permit cap (January 2024)? Following on:
     - Finding the percentage of schools' students enrolment that is international students;
     - the pace at which this has changed in the last 12-14 years;
-    - the programs on which these students are enrolled (the IRCC change does not cap certain programs); and
+    - the programs on which these students are enrolled (the IRCC cap varies by Field of Study at Colleges); and
     - the financial loss due to non-enrolment of international students, assuming some forecasted scenarios of e.g. 35% decrease (the estimated new permit decrease at the top federal level) and others.
       
   - To see **how Canadian PSIs are responding to this change** as enrolment for AY 25/26 begins. Which programs are no longer being offered?
-    - Are international-heavy programs not being offered, anticipating low turnouts, with consolidation into fewer programs (the safe approach)
-    - Are domestic-heavy programs being cut, anticipating budget shortfalls and an inability to fund programs with lower reveue ceilings? The assumption there is that the PSI is betting on their ability to outcompete others on attracting students to fill the limited quantity of provincial permits available.
+    - The safe play: international-heavy programs not being offered, anticipating low turnouts, with program consolidation?
+    - The risk play: Are domestic-heavy programs being cut, anticipating budget shortfalls and an inability (or unwillingness) to fund programs with lower reveue ceilings? The assumption there is that the PSI is betting on their ability to outcompete other PSIs on attracting students to fill the limited quantity of provincial permits available.
 
-2. To illustrate my expanding Data Science skillset in answering said questions, e.g. pipelines to automate and standardize cleaning and processing of data. It seems unlikely at the moment that the data here could be used to make a supervised learning model in predicting school revenue or international enrolment itself as these are both impacted by a variety of nonlinear and intangible effects that aren't captured in the enrolment data alone which I have access to. We could explore clustering of schools in an unsupervised learning model, but with no clear target that task is not a priority.
+2. To illustrate my expanding Data Science skillset, e.g. pipelines to automate and standardize cleaning and processing of data. I will try to build a forecast for tuition fee revenue losses from feature engineering relevant metrics like overall enrolment, international student percentages, enrolment in PGWP eligible programs, rate of recent international growth (a larger steady base may provide a more sticky repuation among the international community). A strategy could be to simply start with a hypotheticals e.g. 35% drop in international enrollment across the board and translating that into # of international students * international tuition, for each school.
 
-Additionally, the direction I want to take now - forecast of revenue lost due to declining international enrolment e.g. starting with a hypothetical 30% drop in international enrollment across the board and translating that into # of international students * international enrolment, for each school - is more of a simple calculation based on hypothetical scenarios and it doesn't require a predictive model.
+# Goals of this project:
 
-## Goals of this project:
-
-- Beginning with the province of Ontario, I will collect and combine key data on Canada's Post-Secondary Institution's student enrolment across major demographics e.g. Status in Canada, Gender, information on Program enrolment by students, type of institution/programs offered, the PSI's growth in enrolment over the last 10-15 years (depending on data avilability), available data on PSI's financial performance and combine with information related to IRCC study permits issued for the respective year.
+- I will collect and combine key data on Canada's Post-Secondary Institution's student enrolment across major demographics e.g. Status in Canada, Gender, information on Program enrolment by students, type of institution/programs offered, the PSI's growth in enrolment over the last 10-15 years (depending on data avilability), available data on PSI's financial performance and combine with information related to IRCC study permits issued for the respective year.
 
 - I would like to use this data on PSIs in an unsupervised learning model to find similar characteristics between institutions e.g. clusters (K means clustering) or PCA to identify the most distinctive variations between institutions.
 
@@ -52,7 +66,7 @@ A position held by PSIs is that many provincial governments have cut grants and 
 
 ## Data Sources:
 
-Data are taken from Excel spreadsheets from various federal and provincial websites, and in some cases the institution's own websites:
+Data are taken from Excel spreadsheets from various federal and provincial websites, and in some cases the institution's own websites. Some are listed in the introduction of the notebooks, some listed here:
 
 - [IRCC Data on study permit holders](https://open.canada.ca/data/en/dataset/90115b00-f9b8-49e8-afa3-b4cff8facaee)
 
