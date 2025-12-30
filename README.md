@@ -4,6 +4,10 @@ An exploration of Canada's postsecondary institutions since 2009, covering the c
 
 # Updates Log
 
+### December 2025:
+
+I have taken a long break from this data project with other commitments and am returning to it now to make some updates, as StatCan now has published data on the 23/24 Academic Year. We should see the "apex" of unrestricted student enrolment in this year, as the Federal Goverment only announced changes to study permits in January of 2024 with enrolment of both 23/24 semesters already complete. General fallout and impact to specific institutions is now better known.
+
 ### March 2025:
 
 Have spent time organising the project workbooks and cleaning the contents:
